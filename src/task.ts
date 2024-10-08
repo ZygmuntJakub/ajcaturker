@@ -22,7 +22,7 @@ const getShowOnHome = (params: {
   return params.index < 3; // show first 3
 };
 
-export const getMarkedCategories = (categories: Category[]): Set<string> =>
+const getMarkedCategories = (categories: Category[]): Set<string> =>
   new Set(
     categories
       .filter((category) => category.Title && category.Title.includes('#'))
@@ -37,7 +37,7 @@ const getOrder = (title: string, id: number, marked: Set<string>): number => {
 const sortChildren = (children: CategoryListElement[]): CategoryListElement[] =>
   children.sort((a, b) => a.order - b.order);
 
-const parse = (categories: Category[], level = 0): CategoryListElement[] =>
+const parse = (categories: Category[] = [], level = 0): CategoryListElement[] =>
   categories.length === 0
     ? []
     : categories.map((category, index) => {
